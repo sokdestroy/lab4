@@ -33,10 +33,6 @@ type
     NumOfTurnPole: TEdit;
     Label7: TLabel;
     procedure startBtnClick(Sender: TObject);
-    procedure aPoleKeyPress(Sender: TObject; var Key: Char);
-    procedure M0PoleKeyPress(Sender: TObject; var Key: Char);
-    procedure aPoleExit(Sender: TObject);
-    procedure M0PoleExit(Sender: TObject);
     //procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
@@ -52,26 +48,6 @@ implementation
 
 {$R *.dfm}
 
-
-procedure TForm1.aPoleExit(Sender: TObject);
-begin
-  if aPole.Text = '' then CheckBox1.Checked := False;
-end;
-
-procedure TForm1.aPoleKeyPress(Sender: TObject; var Key: Char);
-begin
-  CheckBox1.Checked := True;
-end;
-
-procedure TForm1.M0PoleExit(Sender: TObject);
-begin
-  if M0Pole.Text = '' then CheckBox2.Checked := False;
-end;
-
-procedure TForm1.M0PoleKeyPress(Sender: TObject; var Key: Char);
-begin
-  CheckBox2.Checked := True;
-end;
 
 procedure TForm1.startBtnClick(Sender: TObject);
 var elems: ElementsOfOrbit;

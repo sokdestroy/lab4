@@ -80,7 +80,7 @@ object Form1: TForm1
   end
   object Label6: TLabel
     Left = 424
-    Top = 143
+    Top = 159
     Width = 83
     Height = 19
     Caption = #1042#1088#1077#1084#1103'('#1095':'#1084':'#1089')'
@@ -93,7 +93,7 @@ object Form1: TForm1
   end
   object Label7: TLabel
     Left = 424
-    Top = 210
+    Top = 226
     Width = 109
     Height = 19
     Caption = #1063#1080#1089#1083#1086' '#1086#1073#1086#1088#1086#1090#1086#1074
@@ -119,7 +119,6 @@ object Form1: TForm1
     EditLabel.Font.Style = [fsItalic]
     EditLabel.ParentFont = False
     TabOrder = 0
-    OnExit = aPoleExit
     OnKeyPress = aPoleKeyPress
   end
   object ePole: TLabeledEdit
@@ -190,7 +189,6 @@ object Form1: TForm1
     EditLabel.ParentBiDiMode = False
     EditLabel.ParentFont = False
     TabOrder = 4
-    OnExit = M0PoleExit
     OnKeyPress = M0PoleKeyPress
   end
   object wPole: TLabeledEdit
@@ -237,7 +235,7 @@ object Form1: TForm1
   end
   object timeEdt: TMaskEdit
     Left = 424
-    Top = 168
+    Top = 184
     Width = 117
     Height = 21
     EditMask = '!90:00:00;1;_'
@@ -53769,7 +53767,6 @@ object Form1: TForm1
       6228862288622886228862288622886228862288622886228862288622886228
       8622886228862288622886228862288622886228862288622886228862288622
       886228862288622886228BFFD9}
-    Legend.Visible = False
     Title.Text.Strings = (
       #1058#1088#1072#1089#1089#1072' '#1089#1087#1091#1090#1085#1080#1082#1072)
     BottomAxis.Automatic = False
@@ -53821,7 +53818,7 @@ object Form1: TForm1
   end
   object NumOfTurnPole: TEdit
     Left = 424
-    Top = 235
+    Top = 251
     Width = 121
     Height = 21
     TabOrder = 13

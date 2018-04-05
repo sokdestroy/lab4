@@ -36,7 +36,6 @@ type
     procedure aPoleKeyPress(Sender: TObject; var Key: Char);
     procedure M0PoleKeyPress(Sender: TObject; var Key: Char);
     procedure aPoleExit(Sender: TObject);
-    procedure M0PoleExit(Sender: TObject);
     //procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
@@ -61,11 +60,6 @@ end;
 procedure TForm1.aPoleKeyPress(Sender: TObject; var Key: Char);
 begin
   CheckBox1.Checked := True;
-end;
-
-procedure TForm1.M0PoleExit(Sender: TObject);
-begin
-  if M0Pole.Text = '' then CheckBox2.Checked := False;
 end;
 
 procedure TForm1.M0PoleKeyPress(Sender: TObject; var Key: Char);
