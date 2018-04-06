@@ -53791,18 +53791,22 @@ object Form1: TForm1
     TabOrder = 10
     DefaultCanvas = 'TGDIPlusCanvas'
     ColorPaletteIndex = 13
-    object Series1: TFastLineSeries
-      HoverElement = []
+    object Series1: TPointSeries
+      HoverElement = [heCurrent]
+      Selected.Hover.Visible = False
+      Marks.Callout.Length = 8
       SeriesColor = clRed
-      LinePen.Color = clRed
-      LinePen.Style = psDash
-      LinePen.Width = 3
+      ClickableLine = False
+      Pointer.HorizSize = 2
+      Pointer.InflateMargins = True
+      Pointer.Pen.Visible = False
+      Pointer.Style = psCircle
+      Pointer.VertSize = 2
       XValues.Name = 'X'
       XValues.Order = loAscending
       YValues.Name = 'Y'
       YValues.Order = loNone
       Data = {0000000000}
-      Detail = {0000000000}
     end
   end
   object CheckBox1: TCheckBox
