@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.129,=C:\Users\moshg\Desktop\slavka\lab4\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.021,=C:\Users\moshg\Desktop\slavka\lab4\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.120,=C:\Users\moshg\Desktop\slavka\lab4\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.365,C:\Users\Vyacheslav\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\Учеба\Четвертый курс\Лаборатории специализации\Лаба 4\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.365,C:\Users\Vyacheslav\Documents\Embarcadero\Studio\Projects\Unit1.dfm=D:\Учеба\Четвертый курс\Лаборатории специализации\Лаба 4\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.296,C:\Users\Vyacheslav\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\Учеба\Четвертый курс\Лаборатории специализации\Лаба 4\Project1.dproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.533,=C:\Users\Vyacheslav\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.365,D:\Учеба\Четвертый курс\Лаборатории специализации\Лаба 4\Unit1.dfm=C:\Users\Vyacheslav\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.296,D:\Учеба\Четвертый курс\Лаборатории специализации\Лаба 4\Project1.dproj=C:\Users\Vyacheslav\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.365,D:\Учеба\Четвертый курс\Лаборатории специализации\Лаба 4\Unit1.pas=C:\Users\Vyacheslav\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2018.04.07 16:20:32.129,=C:\Users\moshg\Desktop\slavka\lab4\Unit2.pas</Transaction>
-    <Transaction>2018.04.07 16:32:41.021,=C:\Users\moshg\Desktop\slavka\lab4\Unit2.pas</Transaction>
-    <Transaction>2018.04.07 16:32:50.120,=C:\Users\moshg\Desktop\slavka\lab4\Unit2.pas</Transaction>
   </Transactions>
 </BorlandProject>

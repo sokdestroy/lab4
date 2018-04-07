@@ -41,7 +41,7 @@ object Form2: TForm2
     Font.Height = -16
     Font.Name = 'Tahoma'
     Font.Style = [fsItalic]
-    ModalResult = 1
+    ModalResult = 777
     ParentFont = False
     TabOrder = 0
   end
@@ -56,7 +56,7 @@ object Form2: TForm2
     Font.Height = -16
     Font.Name = 'Tahoma'
     Font.Style = [fsItalic]
-    ModalResult = 2
+    ModalResult = 999
     ParentFont = False
     TabOrder = 1
   end
