@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,module,
   Vcl.Mask, VclTee.TeeGDIPlus, VCLTee.TeEngine, VCLTee.Series, VCLTee.TeeProcs,
-  VCLTee.Chart,Math;
+  VCLTee.Chart,Math,addfunction;
 
 type
   TForm1 = class(TForm)
@@ -27,11 +27,11 @@ type
     Label6: TLabel;
     tObrPole: TLabeledEdit;
     Chart1: TChart;
-    Series1: TFastLineSeries;
     CheckBox1: TCheckBox;
     CheckBox2: TCheckBox;
     NumOfTurnPole: TEdit;
     Label7: TLabel;
+    Series1: TPointSeries;
     procedure startBtnClick(Sender: TObject);
     procedure aPoleKeyPress(Sender: TObject; var Key: Char);
     procedure M0PoleKeyPress(Sender: TObject; var Key: Char);
@@ -77,10 +77,12 @@ procedure TForm1.startBtnClick(Sender: TObject);
 var elems: ElementsOfOrbit;
     day,month,year,hour,minute,second,Ms: word;//так как они должны быть положительными
     M0,MEnd,JD,H,Tobr,
-    EccAnomaly,lamd,fi,NumOfTurn  : extended;
+    EccAnomaly,lamd,fi,NumOfTurn,tm,EccAn,r  : extended;
     coords: DecartCoords;
     i: integer;
     MyDate, MyTime : TDateTime;
+    x : array[1..6] of Extended;
+    y : array[1..3] of Extended;
 begin
 {=======================================
            Блок ввода данных
@@ -253,9 +255,10 @@ begin
       Конец блока ввода данных
 ========================================}
     Series1.Clear;
-    i := 1;
+    {i := 1;
+    JD := JDate(year,month,day,hour,minute,second);
     while elems[6] <= MEnd do begin
-      JD := JDate(year,month,day,hour,minute,second);
+
       H := sid2000(JD);
 
       coords := fromOrbitToDecart(elems);
@@ -267,6 +270,30 @@ begin
       JD := JD + TObr/100/86400;
       elems[6] := elems[6] + 2*PI*0.01;
       Inc(i);
+    end;}
+
+    JD := JDate(year,month,day,hour,minute,second);
+    EccAn := 2*arctan2(tan(-elems[5]*rad/2),
+                              sqrt((1 + elems[2])/(1 - elems[2])));
+    tm := 0;
+    while (tm <= Tobr*NumOfTurn) do begin
+      SolutionOfKepEq(0,tm,elems[1],elems[2],mu,M0, EccAn);
+      kepindek(EccAn,elems[2],elems[1],elems[3],mu,elems[4],elems[5],x);
+
+      H := sid2000(JD);
+
+      y[1] := cos(H)*x[1] + sin(H)*x[2];
+      y[2] := -sin(H)*x[1] + cos(H)*x[2];
+      y[3] := x[3];
+
+      lamd := arctan2(y[2],y[1]);
+
+      r := sqrt(sqr(y[1]) + sqr(y[2]) + sqr(y[3]));
+      fi := arcsin(y[3]/r);
+
+      Series1.AddXY(toDegrees(lamd),toDegrees(Fi));
+      JD := JD + Tobr/100/86400;
+      tm := tm + Tobr/100;
     end;
 end;
 

@@ -27,15 +27,12 @@ type
     Label6: TLabel;
     tObrPole: TLabeledEdit;
     Chart1: TChart;
-    CheckBox1: TCheckBox;
     CheckBox2: TCheckBox;
     NumOfTurnPole: TEdit;
     Label7: TLabel;
     Series1: TPointSeries;
     procedure startBtnClick(Sender: TObject);
-    procedure aPoleKeyPress(Sender: TObject; var Key: Char);
     procedure M0PoleKeyPress(Sender: TObject; var Key: Char);
-    procedure aPoleExit(Sender: TObject);
     procedure M0PoleExit(Sender: TObject);
     //procedure Button1Click(Sender: TObject);
   private
@@ -52,16 +49,6 @@ implementation
 
 {$R *.dfm}
 
-
-procedure TForm1.aPoleExit(Sender: TObject);
-begin
-  if aPole.Text = '' then CheckBox1.Checked := False;
-end;
-
-procedure TForm1.aPoleKeyPress(Sender: TObject; var Key: Char);
-begin
-  CheckBox1.Checked := True;
-end;
 
 procedure TForm1.M0PoleExit(Sender: TObject);
 begin
@@ -87,12 +74,59 @@ begin
 {=======================================
            Блок ввода данных
 ========================================}
-    if CheckBox1.Checked then begin//если чекбокс вкл то считываем значение из поля для ввода
-      if aPole.Text = ''  then begin
-        ShowMessage('Вы не ввели полуось.');
+
+      if (aPole.Text = '') and (tObrPole.Text = '')  then begin
+        ShowMessage('Вы не ввели большую полуоcь или период обращения.');
         exit;
+      end else begin
+        if (aPole.Text <> '') and (tObrPole.Text = '') then begin
+          try
+            elems[1] := StrToFloat(aPole.Text);
+            Tobr := 2*pi*sqrt(power(elems[1],3)/mu);
+          except
+            ShowMessage('Полуось должна быть вещественного типа.');
+            aPole.Text := '';
+            exit;
+          end;
+        end else if (aPole.Text = '') and (tObrPole.Text <> '') then begin
+          try
+            if StrToFloat(tObrPole.Text) > 0 then begin
+              Tobr := StrToFloat(tObrPole.Text);
+              elems[1] := power(sqr(Tobr)*mu/sqr(2*pi),1/3);
+            end else begin
+              ShowMessage('Период обращения должен быть вещественного типа и больше нуля.');
+              TobrPole.Text := '';
+              exit;
+            end;
+          except
+            ShowMessage('Период обращения должен быть вещественного типа и больше нуля.');
+            TobrPole.Text := '';
+            exit;
+          end;
+        end else if (aPole.Text <> '') and (tObrPole.Text <> '') then begin
+          try
+            elems[1] := StrToFloat(aPole.Text);
+          except
+            ShowMessage('Полуось должна быть вещественного типа.');
+            aPole.Text := '';
+            exit;
+          end;
+
+          try
+            if StrToFloat(tObrPole.Text) > 0 then begin
+              Tobr := StrToFloat(tObrPole.Text);
+            end else begin
+              ShowMessage('Период обращения должен быть больше нуля.');
+              TobrPole.Text := '';
+              exit;
+            end;
+          except
+            ShowMessage('Период обращения должен быть вещественного типа и больше нуля.');
+            TobrPole.Text := '';
+            exit;
+          end;
+        end;
       end;
-    end;
 
      if ePole.Text = ''  then begin
       ShowMessage('Вы не ввели эксцентриситет.');
@@ -121,8 +155,8 @@ begin
       end;
     end;
 
-    if tObrPole.Text = ''  then begin
-      ShowMessage('Вы не ввели период обращения.');
+    if NumOfTurnPole.Text = ''  then begin
+      ShowMessage('Вы не ввели количество оборотов.');
       exit;
     end;
 
@@ -177,40 +211,6 @@ begin
       elems[6] := EccAnomaly - elems[2]*sin(EccAnomaly);
     end;
 
-    //можно придумать проще, но я тупой
-    try
-      if StrToFloat(tObrPole.Text) > 0 then begin
-        Tobr := StrToFloat(tObrPole.Text);
-      end else begin
-        ShowMessage('Период обращения должен быть вещественного типа и больше нуля.');
-        TobrPole.Text := '';
-        exit;
-      end;
-    except
-      ShowMessage('Период обращения должен быть вещественного типа и больше нуля.');//период неможет быть меньше нуля
-      TobrPole.Text := '';
-      exit;
-    end;//ps использовать тип word мы не можем так как нет перевода из str в word
-
-    if CheckBox1.Checked then begin
-      try
-        elems[1] := StrToFloat(aPole.Text);
-      except
-        ShowMessage('Полуось должна быть вещественного типа.');
-        aPole.Text := '';
-        exit;
-      end;
-    end else elems[1] := power(sqr(Tobr)*mu/sqr(2*pi),1/3);
-
-    {try
-      day := StrToFloat(dateEdt.Text[1] + dateEdt.Text[2]);
-      month := StrToFloat(dateEdt.Text[4] + dateEdt.Text[5]);
-      year := StrToFloat(dateEdt.Text[7] + dateEdt.Text[8] + dateEdt.Text[9] +
-      dateEdt.Text[10]);
-    except
-      showMessage('Некорректная дата');
-    end;}
-
     //используем для даты и вемени тип TDateTime
     try
       MyDate := StrToDate(dateEdt.Text);
@@ -218,14 +218,6 @@ begin
     except
       showMessage('Некорректная дата');
     end;
-
-    {try
-      hour := StrToFloat(timeEdt.Text[1] + timeEdt.Text[2]);
-      minute := StrToFloat(timeEdt.Text[4] + timeEdt.Text[5]);
-      second := StrToFloat(timeEdt.Text[7] + timeEdt.Text[8]);
-    except
-      showMessage('Некорректное время');
-    end;}
 
     try
       MyTime := StrToTime(timeEdt.Text);
@@ -235,21 +227,15 @@ begin
     end;
 
     try
-      if StrToInt(NumOfTurnPole.Text) > 0 then begin
-        NumOfTurn := StrToInt(NumOfTurnPole.Text);
-      end else begin
-        ShowMessage('Число оборотов должно быть целым числом и больше нуля');
-        NumOfTurnPole.Text := '';
-        exit;
-      end;
+      NumOfTurn := StrToInt(NumOfTurnPole.Text);
     except
-      ShowMessage('Число оборотов должно быть целым числом и больше нуля');
+      ShowMessage('Количество оборотов должно быть целым');
       NumOfTurnPole.Text := '';
       exit;
     end;
 
     M0 := elems[6];
-    MEnd := M0 + 2*PI*NumOfTurn;
+    //MEnd := M0 + 2*PI*NumOfTurn;
 
 {=======================================
       Конец блока ввода данных

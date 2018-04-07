@@ -1,6 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
+  Hint = '////////////////////////////'
   Caption = #1058#1088#1072#1089#1089#1072' '#1048#1057#1047
   ClientHeight = 395
   ClientWidth = 770
@@ -11,6 +12,7 @@ object Form1: TForm1
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  ShowHint = False
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -119,8 +121,6 @@ object Form1: TForm1
     EditLabel.Font.Style = [fsItalic]
     EditLabel.ParentFont = False
     TabOrder = 0
-    OnExit = aPoleExit
-    OnKeyPress = aPoleKeyPress
   end
   object ePole: TLabeledEdit
     Left = 576
@@ -53809,26 +53809,19 @@ object Form1: TForm1
       Data = {0000000000}
     end
   end
-  object CheckBox1: TCheckBox
-    Left = 665
-    Top = 84
-    Width = 97
-    Height = 17
-    TabOrder = 11
-  end
   object CheckBox2: TCheckBox
     Left = 665
     Top = 294
     Width = 97
     Height = 17
-    TabOrder = 12
+    TabOrder = 11
   end
   object NumOfTurnPole: TEdit
     Left = 424
     Top = 235
     Width = 121
     Height = 21
-    TabOrder = 13
+    TabOrder = 12
     Text = '1'
   end
 end
