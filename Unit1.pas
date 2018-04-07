@@ -49,6 +49,8 @@ implementation
 
 {$R *.dfm}
 
+uses Unit2;
+
 
 procedure TForm1.M0PoleExit(Sender: TObject);
 begin
@@ -124,6 +126,17 @@ begin
             ShowMessage('Период обращения должен быть вещественного типа и больше нуля.');
             TobrPole.Text := '';
             exit;
+          end;
+
+          if abs(Tobr - 2*pi*sqrt(power(elems[1],3)/mu)) > 1 then begin
+            Form2.ShowModal;
+            if Form2.ModalResult = mrOk then begin
+              Tobr := 2*pi*sqrt(power(elems[1],3)/mu);
+              tObrPole.Text := FloatToStr(Tobr);
+            end else if Form2.ModalResult = mrCancel then begin
+              elems[1] := power(sqr(Tobr)*mu/sqr(2*pi),1/3);
+              aPole.Text := FloatToStr(elems[1]);
+            end else exit;
           end;
         end;
       end;

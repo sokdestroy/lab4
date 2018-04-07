@@ -265,7 +265,7 @@ object Form1: TForm1
   end
   object Chart1: TChart
     Left = 8
-    Top = 84
+    Top = 96
     Width = 410
     Height = 250
     AllowPanning = pmNone
