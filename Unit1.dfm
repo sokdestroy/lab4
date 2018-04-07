@@ -12,7 +12,6 @@ object Form1: TForm1
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  ShowHint = False
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -269,6 +268,7 @@ object Form1: TForm1
     Top = 84
     Width = 410
     Height = 250
+    AllowPanning = pmNone
     BackWall.Picture.Data = {
       0A544A504547496D6167653E1F1A00FFD8FFE000104A46494600010201004800
       480000FFE112844578696600004D4D002A000000080007011200030000000100
@@ -53787,7 +53787,9 @@ object Form1: TForm1
     LeftAxis.Minimum = -90.000000000000000000
     LeftAxis.Title.Angle = 360
     LeftAxis.Title.Caption = #966#176
+    Panning.MouseWheel = pmwNone
     View3D = False
+    Zoom.Allow = False
     TabOrder = 10
     DefaultCanvas = 'TGDIPlusCanvas'
     ColorPaletteIndex = 13
